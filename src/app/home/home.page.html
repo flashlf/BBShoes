@@ -1,51 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Doctors App
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list class="ios list-ios hydrated">
+    <ion-list-header class="ios hydrated">
+      Appointment
+    </ion-list-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div>
-            1 of 2
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            2 of 2
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <div>
-            1 of 3
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            2 of 3
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            3 of 3
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+    <ion-item *ngFor="let booking of Bookings" class="user-list">
+      <ion-label>
+        <h5>
+          <ion-icon name="person"></ion-icon> {{booking.name}}
+        </h5>
+        <p>
+          <ion-icon name="call"></ion-icon> {{booking.mobile}}
+        </p>
+      </ion-label>
+
+      <div class="item-note" item-end>
+        <button ion-button clear [routerLink]="['/edit-appointment/', booking.$key]">
+          <ion-icon name="create" style="zoom:2.0"></ion-icon>
+        </button>
+        <button ion-button clear (click)="deleteBooking(booking.$key)">
+          <ion-icon name="trash" style="zoom:2.0"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>
