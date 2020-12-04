@@ -1,5 +1,7 @@
 {
   "name": "BBShoes",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
