@@ -1,3 +1,4 @@
+import { analyzeFileForInjectables } from '@angular/compiler';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,10 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  text = "Default starting text";
+  // Properti Class
+  text = "Default starting text"; // Contoh Penulisan Variable
   constructor() {}
 
+  /**
+   * Method onChangeText() untuk kemudian dipanggil
+   * pada home.page.html button yg dimuat method ini.
+   */
   onChangeText() {
-    this.text = "Changed";
+    if(this.text == "Changed") {
+      this.text = "Its Already Changed FUCKER!";
+    } else
+      this.text = "Changed";
+  }
+  login() {
+    this.text = "You Clicked Login Button";
   }
 }
