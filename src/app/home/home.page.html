@@ -15,37 +15,7 @@
 
   <div id="container">
     <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div>
-            1 of 2
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            2 of 2
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <div>
-            1 of 3
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            2 of 3
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            3 of 3
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <p>{{ text }}</p>
+    <ion-button (click)="onChangeText()">Change Text</ion-button>
   </div>
 </ion-content>
