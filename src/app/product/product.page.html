@@ -1,9 +1,112 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Product</ion-title>
+    <ion-buttons slot="end" class="ion-margin-end" (click)="showFilter()">       
+      <ion-icon [name]="iconName"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" class="ion-margin-horizontal" (click)="showSearch()">       
+        <ion-icon name="search-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar [hidden]="hidden">
+    <ion-searchbar animated></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>YO MTF!</h1>
+  <ion-grid>
+    <ion-row class="ion-padding product-banner">
+      Carrousel
+    </ion-row>
+    <ion-row> <!-- Bagian Dynamis product -->
+      <ion-col>
+        <ion-card>
+          <img src="assets/madison.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
+            <div class="ion-text-capitalize">
+              <ion-card-title>Air Jordan MK II</ion-card-title>
+            </div>
+          </ion-card-header>
+          <ion-card-content class="ion-float-right">
+            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
+            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row> <!-- Bagian Dynamis product -->
+      <ion-col>
+        <ion-card>
+          <img src="assets/madison.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
+            <div class="ion-text-capitalize">
+              <ion-card-title>Air Jordan MK II</ion-card-title>
+            </div>
+          </ion-card-header>
+          <ion-card-content class="ion-float-right">
+            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
+            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row> <!-- Bagian Dynamis product -->
+      <ion-col>
+        <ion-card>
+          <img src="assets/madison.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
+            <div class="ion-text-capitalize">
+              <ion-card-title>Air Jordan MK II</ion-card-title>
+            </div>
+          </ion-card-header>
+          <ion-card-content class="ion-float-right">
+            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
+            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row> <!-- Bagian Dynamis product -->
+      <ion-col>
+        <ion-card>
+          <img src="assets/madison.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
+            <div class="ion-text-capitalize">
+              <ion-card-title>Air Jordan MK II</ion-card-title>
+            </div>
+          </ion-card-header>
+          <ion-card-content class="ion-float-right">
+            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
+            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button >
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
