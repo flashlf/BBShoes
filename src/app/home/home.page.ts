@@ -1,5 +1,6 @@
 import { analyzeFileForInjectables } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 export class HomePage {
   // Properti Class
   text = "Default starting text"; // Contoh Penulisan Variable
-  constructor() {}
+  constructor(public toastControl: ToastController) {}
 
   /**
    * Method onChangeText() untuk kemudian dipanggil
@@ -23,5 +24,8 @@ export class HomePage {
   }
   login() {
     this.text = "You Clicked Login Button";
+  }
+  register() {
+    this.text = "You Clicked Register Button";
   }
 }
