@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1>Login</h1>
+          <ion-item class="ion-margin-horizontal">
+            <ion-label position="fixed"><ion-icon name="person-outline"></ion-icon>&nbsp;Username</ion-label>
+            <ion-input name="username" type="text" placeholder="Your Username" clearInput="true" color="light" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
+          </ion-item>
+          
+          <ion-item class="ion-margin-horizontal">
+            <ion-label position="fixed"><ion-icon name="key-outline"></ion-icon>&nbsp;Password</ion-label>
+            <ion-input name="password" type="password" placeholder="Your Password" clearInput="true" color="light" autocomplete="off" max="16" min="4"></ion-input>
+          </ion-item>
+          <br>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" class="ion-margin-horizontal" (click)="register()" fill="outline">
+            <ion-icon name="people-outline" slot="start"></ion-icon>Register
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" class="ion-margin-horizontal" (click)="login()">
+            <ion-icon name="log-in-outline" slot="start"></ion-icon>Login
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <br>
+  <p color="danger">{{ text }}</p> <!-- Ini Contoh penulisan placeholder untuk Variable pada TypeScript Angular-->
+  <ion-button fill="outline" color="danger" (click)="onChangeText()">Change Text</ion-button> <!-- Cara penulisan method untuk button onClick -->
+</ion-content>
