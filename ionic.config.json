@@ -1,7 +1,8 @@
 {
   "name": "BBShoes",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

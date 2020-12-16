@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Product</ion-title>
     <ion-buttons slot="end" class="ion-margin-end" (click)="showFilter()">       
       <ion-icon [name]="iconName"></ion-icon>
@@ -8,7 +8,7 @@
         <ion-icon name="search-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar [hidden]="hidden">
+  <ion-toolbar [hidden]="hidden" color="secondary">
     <ion-searchbar animated></ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -65,7 +65,7 @@
             </div>
           </ion-card-header>
           <ion-card-content class="ion-float-right">
-            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
+            <ion-button slot="end" fill="outline" color="medium" (click)="OpenModal()">Detail</ion-button>
             <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
           </ion-card-content>
         </ion-card>
@@ -109,4 +109,13 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
+  <ion-list class="ion-padding">
+    <ion-item button *ngFor="let akun of accounts" >
+      <ion-label>
+        <h2>{{akun.name}}</h2>
+        <p>Balance: {{akun.balance | number }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

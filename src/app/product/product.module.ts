@@ -7,14 +7,23 @@ import { IonicModule } from '@ionic/angular';
 import { ProductPageRoutingModule } from './product-routing.module';
 
 import { ProductPage } from './product.page';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductPageRoutingModule
+    ProductPageRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: ProductPage
+      }
+    ])
   ],
-  declarations: [ProductPage]
+  declarations: [ProductPage],
+  entryComponents: [],
+  exports: [ProductPage]
 })
 export class ProductPageModule {}

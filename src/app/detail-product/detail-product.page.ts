@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail-product',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailProductPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+  ) {}
 
   ngOnInit() {
   }
 
+  public closeModal(){
+    this.modalCtrl.dismiss({
+      'dismissed':true
+    });
+  }
 }

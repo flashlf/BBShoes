@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { timeStamp } from 'console';
+import { DetailProductPage } from '../detail-product/detail-product.page';
 
 @Component({
   selector: 'app-product',
@@ -6,14 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product.page.scss'],
 })
 export class ProductPage implements OnInit {
+  accounts = [
+    {
+      name : 'Hussein Muhammad',
+      balance : 1000
+    },
+    {
+      name : 'Ahmad Rashid',
+      balance : 1200
+    }
+  ];
   hidden : boolean;
   iconName : String;
-  constructor() { 
-    this.hidden = true;
-    this.iconName = "filter-circle-outline";
+  constructor(
+    public modalCtrl : ModalController,
+    private routerOutlet: IonRouterOutlet) { 
+    
   }
 
   ngOnInit() {
+    this.hidden = true;
+    this.iconName = "filter-circle-outline";
   }
 
   public showSearch(): void{
@@ -32,5 +48,16 @@ export class ProductPage implements OnInit {
     } else {
       this.iconName = "filter-circle-outline";
     }
+  }
+
+  async OpenModal(){
+    const modal = await this.modalCtrl.create({
+      component : DetailProductPage,
+      cssClass : 'my-custom-class',
+      animated : true,
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl
+    });
+    return await modal.present();
   }
 }
