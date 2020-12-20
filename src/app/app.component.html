@@ -1,19 +1,20 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet id="dashboard"></ion-router-outlet>
 
+  <!-- Tabmenu bottom -->
   <ion-tabs>
     <ion-tab-bar slot="bottom"><!-- Klo gada Session User Arahin ke login dulu -->
-      <ion-tab-button routerLinkActive="tab-selected" routerLink="/login" class="ios" tab="profile">
+      <ion-tab-button routerLinkActive="tab-selected" routerLink="/login" class="md" tab="login">
         <ion-icon name="person-circle-outline"></ion-icon>
         <ion-label>PROFILE</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button routerLinkActive="" routerLink="/home" class="ios" tab="home">
+      <ion-tab-button routerLinkActive="" routerLink="/home" class="md" tab="home">
         <ion-icon name="home-outline"></ion-icon>
         <ion-label>HOME</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button routerLinkActive="" routerLink="/product" class="ios" tab="product">
+      <ion-tab-button routerLinkActive="" routerLink="/product" class="md" tab="product">
         <ion-icon name="cart-outline"></ion-icon>
         <ion-label>PRODUCT</ion-label>
       </ion-tab-button>

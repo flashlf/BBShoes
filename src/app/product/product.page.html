@@ -18,78 +18,44 @@
     <ion-row class="ion-padding product-banner">
       Carrousel
     </ion-row>
-    <ion-row> <!-- Bagian Dynamis product -->
-      <ion-col>
-        <ion-card>
-          <img src="assets/madison.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
+
+    <ion-row class="ion-justify-content-start"> <!-- Bagian Dynamis product -->
+      <!-- Data -->
+      <ion-col *ngFor="let produk of items">
+        <ion-card mode="md">
+          <img class="produk-thumbnail" src={{produk.image}} (click)="OpenModal()"/>
+          <ion-card-header (click)="OpenModal()">
             <div class="ion-text-capitalize">
-              <ion-card-title>Air Jordan MK II</ion-card-title>
+              <ion-card-title>{{produk.name}}</ion-card-title>
             </div>
+            <ion-card-subtitle>Rp. {{produk.balance}}</ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content class="ion-float-right">
-            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
-            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+          <ion-card-content class="ion-float-right">            
+            <ion-button slot="end"(click)="AddCart()">Cart |<ion-icon slot="end" name="add-circle" ></ion-icon></ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
-    </ion-row>
-
-    <ion-row> <!-- Bagian Dynamis product -->
-      <ion-col>
-        <ion-card>
-          <img src="assets/madison.jpg" />
+      
+      <!-- Skeleton -->
+      <ion-col *ngIf="!items">
+        <ion-card mode="md">
+          <ion-thumbnail>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-thumbnail>
           <ion-card-header>
-            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
             <div class="ion-text-capitalize">
-              <ion-card-title>Air Jordan MK II</ion-card-title>
+              <ion-card-title><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></ion-card-title>
             </div>
+            <ion-card-subtitle><ion-skeleton-text animated></ion-skeleton-text></ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content class="ion-float-right">
-            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
-            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <ion-row> <!-- Bagian Dynamis product -->
-      <ion-col>
-        <ion-card>
-          <img src="assets/madison.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
-            <div class="ion-text-capitalize">
-              <ion-card-title>Air Jordan MK II</ion-card-title>
-            </div>
-          </ion-card-header>
-          <ion-card-content class="ion-float-right">
-            <ion-button slot="end" fill="outline" color="medium" (click)="OpenModal()">Detail</ion-button>
-            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <ion-row> <!-- Bagian Dynamis product -->
-      <ion-col>
-        <ion-card>
-          <img src="assets/madison.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Rp. 123.456.789,00</ion-card-subtitle>
-            <div class="ion-text-capitalize">
-              <ion-card-title>Air Jordan MK II</ion-card-title>
-            </div>
-          </ion-card-header>
-          <ion-card-content class="ion-float-right">
-            <ion-button slot="end" fill="outline" color="medium">Detail</ion-button>
-            <ion-button slot="end" class="ion-margin-start">Cart | <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+          <ion-card-content class="ion-float-right">            
+            <ion-skeleton-text animated></ion-skeleton-text>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button >
       <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
@@ -111,10 +77,10 @@
   </ion-fab>
 
   <ion-list class="ion-padding">
-    <ion-item button *ngFor="let akun of accounts" >
+    <ion-item button *ngFor="let produk of items" >
       <ion-label>
-        <h2>{{akun.name}}</h2>
-        <p>Balance: {{akun.balance | number }}</p>
+        <h2>{{produk.name}}</h2>
+        <p>Balance: {{produk.balance | number }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

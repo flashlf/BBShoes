@@ -1,9 +1,55 @@
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-icon slot="start" class="ion-margin-start" name="settings-outline"></ion-icon>
+      <ion-title>Dashboard Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="main">
+    <ion-list>      
+      <ion-menu-toggle>
+        <ion-item button>
+          <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+          <ion-label>Profil</ion-label>
+        </ion-item>
+      </ion-menu-toggle>      
+      <ion-menu-toggle>
+        <ion-item button>
+          <ion-icon slot="start" name="person-add-outline"></ion-icon>
+          <ion-label>Edit Profil</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item button>
+          <ion-icon slot="start" name="receipt-outline"></ion-icon>
+          <ion-label>Konfirmasi Transaksi</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item button>
+          <ion-icon slot="start" name="documents-outline"></ion-icon>
+          <ion-label>Riwayat Transaksi</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item button>
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          <ion-label>Keluar</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button (click)="openFirst()"><ion-icon name="menu"></ion-icon></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content id="dashboard">
+  Hello
 </ion-content>
