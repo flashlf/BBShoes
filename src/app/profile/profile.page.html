@@ -1,3 +1,4 @@
+<!-- Sidebar -->
 <ion-menu side="start" menuId="first" contentId="main">
   <ion-header>
     <ion-toolbar color="primary">
@@ -5,42 +6,33 @@
       <ion-title>Dashboard Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content id="main">
+  <ion-content>
     <ion-list>      
-      <ion-menu-toggle>
-        <ion-item button>
+        <ion-item button routerLink="/profile">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
           <ion-label>Profil</ion-label>
-        </ion-item>
-      </ion-menu-toggle>      
-      <ion-menu-toggle>
-        <ion-item button>
+        </ion-item>      
+        <ion-item button (click)="editProfile()">
           <ion-icon slot="start" name="person-add-outline"></ion-icon>
           <ion-label>Edit Profil</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item button>
           <ion-icon slot="start" name="receipt-outline"></ion-icon>
           <ion-label>Konfirmasi Transaksi</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item button>
           <ion-icon slot="start" name="documents-outline"></ion-icon>
           <ion-label>Riwayat Transaksi</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item button>
           <ion-icon slot="start" name="log-out-outline"></ion-icon>
           <ion-label>Keluar</ion-label>
         </ion-item>
-      </ion-menu-toggle>
     </ion-list>
   </ion-content>
 </ion-menu>
 
+<!-- Profile Page -->
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -50,7 +42,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="main">
   <div id="dashboard">
     <ion-card>
       <ion-card-header>

@@ -1,14 +1,17 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Product</ion-title>
+
+    <!-- Search and Filter -->
     <ion-buttons slot="end" class="ion-margin-end" (click)="showFilter()">       
       <ion-icon [name]="iconName"></ion-icon>
     </ion-buttons>
+    
     <ion-buttons slot="end" class="ion-margin-horizontal" (click)="showSearch()">       
         <ion-icon name="search-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar [hidden]="hidden" color="secondary">
+  <ion-toolbar [hidden]="hidden" color="primary">
     <ion-searchbar animated></ion-searchbar>
   </ion-toolbar>
 </ion-header>
