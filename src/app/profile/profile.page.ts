@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, ModalController, IonRouterOutlet } from '@ionic/angular';
+import { MenuController, ModalController, IonRouterOutlet, NavController } from '@ionic/angular';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private menu: MenuController,
     private modalCtrl: ModalController,
-    private routerOutlet: IonRouterOutlet) { }
+    private routerOutlet: IonRouterOutlet,
+    public navControl: NavController) { }
 
   ngOnInit() {
   }
@@ -32,5 +34,13 @@ export class ProfilePage implements OnInit {
       presentingElement: this.routerOutlet.nativeEl
     });
     return await modal.present();
+  }
+
+  refreshPage(){
+    console.log("Refresh Button Clicked!");
+  }
+
+  logout() {
+    this.navControl.pop();
   }
 }

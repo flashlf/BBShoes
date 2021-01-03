@@ -20,4 +20,12 @@ export class EditProfileComponent implements OnInit {
       'dismissed':true
     });
   }
+
+  refreshInput() {
+    console.log("Refresh input Clicked!");
+  }
+
+  saveChanges() {
+    console.log("Save Changes Clicked!");
+  }
 }

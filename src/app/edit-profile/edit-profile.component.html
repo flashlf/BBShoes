@@ -5,8 +5,33 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       
     </ion-buttons>
+    <ion-buttons slot="end" class="ion-margin-end" (click)="refreshInput()">
+      <ion-icon name="repeat-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" class="ion-margin-end" (click)="saveChanges()">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <h1>YO BITCHES!!!</h1>
+<ion-content>  
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nama</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">No. Ponsel</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Alamat</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+    
+  </ion-list>
+
 </ion-content>
