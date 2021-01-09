@@ -24,7 +24,7 @@
           <ion-icon slot="start" name="documents-outline"></ion-icon>
           <ion-label>Riwayat Transaksi</ion-label>
         </ion-item>
-        <ion-item button routerLink="/login" routerDirection="root" (click)="logout()">
+        <ion-item button>
           <ion-icon slot="start" name="log-out-outline"></ion-icon>
           <ion-label>Keluar</ion-label>
         </ion-item>
@@ -38,8 +38,6 @@
     <ion-buttons slot="start">
       <ion-menu-button (click)="openFirst()"><ion-icon name="menu"></ion-icon></ion-menu-button>
     </ion-buttons>
-    
-    <ion-icon slot="end" class="ion-margin-end" name="log-out-outline" (click)="refreshPage()"></ion-icon>
     <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
