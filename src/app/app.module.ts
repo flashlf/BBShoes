@@ -17,7 +17,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 // environment
 import { environment } from '../environments/environment';
 import { DetailProductPageModule } from './detail-product/detail-product.module';
-
+  // Services and Guards
+  import { HttpClientModule } from '@angular/common/http';
+  import { RegisterPageModule } from "./register/register.module";
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,7 +31,9 @@ import { DetailProductPageModule } from './detail-product/detail-product.module'
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    DetailProductPageModule
+    DetailProductPageModule,
+    HttpClientModule,
+    RegisterPageModule
   ],
   providers: [
     StatusBar,
