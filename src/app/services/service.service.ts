@@ -2,20 +2,33 @@ import { Injectable } from '@angular/core';
 import { User } from '../shared/user.interface';
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from 'firebase';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/firestore";
-import { EmailValidator } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { switchMap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
+  public user$: Observable<User>;
 
   constructor(
     private angAuth:AngularFireAuth,
     private angStore:AngularFirestore
-  ) { }
-
+  ) {
+    this.user$ = this.angAuth.authState.pipe(
+      switchMap((user) => {
+        if (user) {
+          return this.angStore.doc<User>(`users/${user.uid}`).valueChanges();
+        }
+        return of(null);
+      })
+    )
+   }
+  
+  async isEmailVerified(user: User) {
+    return user.emailVerified === true ? true: false;
+  }
   async sendVerificationEmail(): Promise<void> {
     try {
       return (await this.angAuth.currentUser).sendEmailVerification();
@@ -35,6 +48,7 @@ export class ServiceService {
   async loginGoogle(): Promise<User> {
     try {
       const { user } = await this.angAuth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider())
+      this.updateUserData(user);
       return user;
     } catch (error) {
       console.log('Error->', error)
@@ -54,6 +68,7 @@ export class ServiceService {
   async login(email:string, password:string): Promise<User> { 
     try {
       const { user } = await this.angAuth.signInWithEmailAndPassword(email, password);
+      this.updateUserData(user);
       return user;
     } catch (error) {
       console.log('Error->',error)
