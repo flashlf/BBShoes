@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { RegisterPage } from '../register/register.page';
 import { ServiceService } from '../services/service.service';
@@ -14,6 +15,7 @@ export class LoginPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private routerOutlet: IonRouterOutlet,
+    private router: Router,
     private authSvc: ServiceService
   ) { }
 
@@ -33,6 +35,7 @@ export class LoginPage implements OnInit {
       if(user) {
         // TODO : Check Email
         const isVerified = this.authSvc.isEmailVerified(user);
+        this.redirectUser(isVerified);
         console.log('Verified -> ', isVerified)
       }
     } catch (error) {
@@ -45,11 +48,23 @@ export class LoginPage implements OnInit {
       const user = await this.authSvc.loginGoogle();
       if (user) {
         // TODO : Check Email
-        console.log("User ->", user)
+        const isVerified = this.authSvc.isEmailVerified(user);
+        this.redirectUser(isVerified);
+        console.log("Verified ->", isVerified)
       }
     } catch (error) {
       console.log('Error', error)      
     }
+  }
+
+  redirectUser(isVerified: boolean) { //nanti param ganti jadi user buat cek rolenya.
+    // Redirect -> admin kek mana kek
+    if(true){
+      this.router.navigate(['profile']);
+    } else {
+      //manakek
+    }
+
   }
 
   async register() {

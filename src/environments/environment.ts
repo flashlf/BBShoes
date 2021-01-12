@@ -7,6 +7,7 @@ export const environment = {
   firebaseConfig : {
     apiKey: "AIzaSyDN6o8msel34tmOyaposoiFOQebUr7Lmbc",
     authDomain: "bbshoes-72021.firebaseapp.com",
+    databaseURL: "https://bbshoes-72021-default-rtdb.firebaseio.com",
     projectId: "bbshoes-72021",
     storageBucket: "bbshoes-72021.appspot.com",
     messagingSenderId: "826795751704",

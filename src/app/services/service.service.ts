@@ -26,7 +26,7 @@ export class ServiceService {
     )
    }
   
-  async isEmailVerified(user: User) {
+  isEmailVerified(user: User): boolean{
     return user.emailVerified === true ? true: false;
   }
   async sendVerificationEmail(): Promise<void> {

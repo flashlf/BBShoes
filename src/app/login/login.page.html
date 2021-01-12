@@ -11,13 +11,13 @@
         <ion-col>
           <h1>Login</h1>
           <ion-item class="ion-margin-horizontal">
-            <ion-label position="fixed"><ion-icon name="person-outline"></ion-icon>&nbsp;Email</ion-label>
-            <ion-input #email type="email" placeholder="Your Username" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
+            <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Email</ion-label>
+            <ion-input #email type="email" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
           </ion-item>
           
           <ion-item class="ion-margin-horizontal">
-            <ion-label position="fixed"><ion-icon name="key-outline"></ion-icon>&nbsp;Password</ion-label>
-            <ion-input #password type="password" placeholder="Your Password" clearInput="true" autocomplete="off" max="16" min="4"></ion-input>
+            <ion-label position="floating"><ion-icon name="key-outline"></ion-icon>&nbsp;Password</ion-label>
+            <ion-input #password type="password" clearInput="true" autocomplete="off" max="16" min="4"></ion-input>
           </ion-item>
           <br>
         </ion-col>
@@ -30,7 +30,7 @@
           </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button expand="block" routerLink="/profile"
+          <ion-button expand="block"
            class="ion-margin-horizontal" (click)="login(email, password)">
             <ion-icon name="log-in-outline" slot="start"></ion-icon>Login
           </ion-button>
