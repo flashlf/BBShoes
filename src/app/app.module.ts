@@ -20,8 +20,9 @@ import { DetailProductPageModule } from './detail-product/detail-product.module'
   // Services and Guards
   import { HttpClientModule } from '@angular/common/http';
   import { RegisterPageModule } from "./register/register.module";
+import { DashboardPipe } from './dashboard.pipe';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DashboardPipe],
   entryComponents: [],
   imports: [
     BrowserModule, 
