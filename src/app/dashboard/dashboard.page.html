@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+<ion-grid>
+  <ion-row class="ion-justify-content-start">
+    <ion-col>
+      <ion-card mode="md" button>
+        <img class="menu-thumb" src="assets/category.svg" width="66%" height="66%" />
+        <ion-card-header>
+          <ion-card-title>Kategori</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+    <ion-col>
+      <ion-card mode="md" button>
+        <img class="menu-thumb" src="assets/analytics.svg" width="66%" height="66%" />
+        <ion-card-header>
+          <ion-card-title>Point of Sales</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card mode="md" button routerLink="/dashboard/product">
+        <img class="menu-thumb" src="assets/parcel.svg" width="66%" height="66%" />
+        <ion-card-header>
+          <ion-card-title>Product</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+</ion-content>
