@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>action-product</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard/product"
+        text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Nama</ion-label>
+      <ion-input formControlName="name" type="text" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
+    </ion-item>
+    
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="floating"><ion-icon name="key-outline"></ion-icon>&nbsp;Brand</ion-label>
+      <ion-input formControlName="brand" type="text" clearInput="true" autocomplete="off" max="16" min="4"></ion-input>
+    </ion-item>
 
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Price</ion-label>
+      <ion-input formControlName="price" type="number" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
+    </ion-item>
+    
+    <ion-item class="ion-margin-horizontal">    
+      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Description</ion-label>
+      <ion-textarea formControlName="desc"></ion-textarea>
+    </ion-item>
+
+    <ion-button type="submit" shape="full" color="success" expand="block">Submit</ion-button>
+  </form>
 </ion-content>
