@@ -27,8 +27,12 @@
     
     <ion-item class="ion-margin-horizontal">    
       <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Description</ion-label>
-      <ion-textarea formControlName="desc"></ion-textarea>
+      <ion-textarea formControlName="desc" clearInput="true"></ion-textarea>
     </ion-item>
+    <!-- image Container -->
+    <img [src]="imgURL" height="200" width="200" /><br>
+    <ion-button (click)="getCamera()">From Camera</ion-button>
+    <ion-button (click)="getGallery()">From Gallery</ion-button>
 
     <ion-button type="submit" shape="full" color="success" expand="block">Submit</ion-button>
   </form>
