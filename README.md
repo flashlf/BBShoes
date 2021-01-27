@@ -17,6 +17,8 @@ Firman Felani
 - [Ionic Doc](https://ionicframework.com/docs)
 
 ## Intermezzo
-- Command untuk LiveReload Dev App
-``ionic serve``
+- Command untuk LiveReload Dev App Web
+``$ ionic serve``
+- Command untuk LiveReload Dev Android Device
+``$ ionic cordova run android -l``
 # DEADLINE FEBRUARI

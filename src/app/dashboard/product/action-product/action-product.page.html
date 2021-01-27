@@ -25,10 +25,23 @@
       <ion-input formControlName="price" type="number" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
     </ion-item>
     
+    
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Stock</ion-label>
+      <ion-input formControlName="stock" type="number" clearInput="true" autocomplete="off" autofocus="true" inputmode="number" max="16" min="4"></ion-input>
+    </ion-item>
+    
     <ion-item class="ion-margin-horizontal">    
       <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Description</ion-label>
       <ion-textarea formControlName="desc" clearInput="true"></ion-textarea>
     </ion-item>
+
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Image</ion-label>
+      <ion-input type="file" (change)="uploadFile($event.target.files)" inputmode="file"></ion-input>
+      <ion-input formControlName="imgURL" type="hidden" inputmode="text" [value]="imgURL"></ion-input>
+    </ion-item>
+
     <!-- image Container -->
     <img [src]="imgURL" height="200" width="200" /><br>
     <ion-button (click)="getCamera()">From Camera</ion-button>

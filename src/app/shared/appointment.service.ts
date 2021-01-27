@@ -12,6 +12,7 @@ export class AppointmentService {
 
   // Create
   createBooking(apt: Appointment) {
+    
     return this.bookingListRef.push({
       name    : apt.name,
       email   : apt.email,
