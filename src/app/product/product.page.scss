@@ -2,8 +2,11 @@ ion-item {
     --padding-start : 0;
 }
 img.produk-thumbnail {
-    max-height: 400px;
-    width: fit-content;
+    max-height: 220px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    margin-left: auto; margin-right: auto;
     image-rendering: optimizeSpeed;
     background-color: #FFFFFF;
 }

@@ -114,8 +114,7 @@ export class ActionProductPage implements OnInit {
         // Get uploaded file storage path
         this.uploadedFileURL = fileRef.getDownloadURL();        
         this.uploadedFileURL.subscribe(resp=>{
-          this.imgURL = resp.downloadURL;
-          console.log("URL : "+resp.downloadURL);
+          console.log("Uploading File to Firebase...");
         },error=>{
           console.error(error);
         })

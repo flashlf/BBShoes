@@ -24,14 +24,14 @@
 
     <ion-row class="ion-justify-content-start"> <!-- Bagian Dynamis product -->
       <!-- Data -->
-      <ion-col *ngFor="let produk of items">
+      <ion-col *ngFor="let produk of Products">
         <ion-card mode="md">
-          <img class="produk-thumbnail" src={{produk.image}} (click)="OpenModal()"/>
+          <img class="produk-thumbnail" src="{{produk.imgURL}}" (click)="OpenModal()"/>
           <ion-card-header (click)="OpenModal()">
             <div class="ion-text-capitalize">
               <ion-card-title>{{produk.name}}</ion-card-title>
             </div>
-            <ion-card-subtitle>Rp. {{produk.balance}}</ion-card-subtitle>
+            <ion-card-subtitle>Rp. {{produk.price}}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content class="ion-float-right">            
             <ion-button slot="end"(click)="AddCart()">Cart |<ion-icon slot="end" name="add-circle" ></ion-icon></ion-button>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { DetailProductPage } from '../detail-product/detail-product.page';
+import { Product } from '../shared/Product';
+import { ProductService } from '../shared/product.service';
 
 @Component({
   selector: 'app-product',
@@ -42,17 +44,32 @@ export class ProductPage implements OnInit {
       balance : 2099000
     }
   ];
+  Products = [];
+
   hidden : boolean;
   iconName : String;
   constructor(
     public modalCtrl : ModalController,
-    private routerOutlet: IonRouterOutlet) { 
+    private routerOutlet: IonRouterOutlet,
+    private prodSvc: ProductService) { 
     
   }
 
   ngOnInit() {
     this.hidden = true;
     this.iconName = "filter-circle-outline";
+    // Ambil Product
+    this.fetchProducts();
+    let productRes = this.prodSvc.getProductList();
+    productRes.snapshotChanges().subscribe(res => {
+      this.Products = [];
+      res.forEach(item => {
+        let a = item.payload.toJSON();
+        console.log(item);
+        a['$key'] = item.key;
+        this.Products.push(a as Product);
+      })
+    })
   }
   AddCart(){
     console.log("Tambah ke keranjang");
@@ -85,6 +102,10 @@ export class ProductPage implements OnInit {
     });
     return await modal.present();
   }
-
   
+  fetchProducts() {
+    this.prodSvc.getProductList().valueChanges().subscribe(res=>{
+      console.log(res);
+    })
+  }
 }
