@@ -1,52 +1,95 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="dashboard/product"
+      <ion-back-button (click)="resetParam()" defaultHref="dashboard/product"
         text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Add Product</ion-title>
+    <ion-title *ngIf="prodRef == 0">Add Product</ion-title>
+    <ion-title *ngIf="prodRef !== 0">Update Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+  <form [formGroup]="productForm" (ngSubmit)="addProduct()" *ngIf="prodRef == 0">
     <ion-item class="ion-margin-horizontal">
-      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Nama</ion-label>
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Nama</ion-label>
       <ion-input formControlName="name" type="text" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
     </ion-item>
     
     <ion-item class="ion-margin-horizontal">
-      <ion-label position="floating"><ion-icon name="key-outline"></ion-icon>&nbsp;Brand</ion-label>
+      <ion-label position="stacked"><ion-icon name="key-outline"></ion-icon>&nbsp;Brand</ion-label>
       <ion-input formControlName="brand" type="text" clearInput="true" autocomplete="off" max="16" min="4"></ion-input>
     </ion-item>
 
     <ion-item class="ion-margin-horizontal">
-      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Price</ion-label>
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Price</ion-label>
       <ion-input formControlName="price" type="number" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" max="16" min="4"></ion-input>
     </ion-item>
     
     
     <ion-item class="ion-margin-horizontal">
-      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Stock</ion-label>
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Stock</ion-label>
       <ion-input formControlName="stock" type="number" clearInput="true" autocomplete="off" autofocus="true" inputmode="number" max="16" min="4"></ion-input>
     </ion-item>
     
     <ion-item class="ion-margin-horizontal">    
-      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Description</ion-label>
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Description</ion-label>
       <ion-textarea formControlName="desc" clearInput="true"></ion-textarea>
     </ion-item>
 
     <ion-item class="ion-margin-horizontal">
-      <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>&nbsp;Image</ion-label>
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Image</ion-label>
       <ion-input type="file" (change)="uploadFile($event.target.files)" inputmode="file" accept="image/*;capture=camera"></ion-input>
       <ion-input formControlName="imgURL" type="hidden" inputmode="text" [value]="imgURL"></ion-input>
     </ion-item>
 
     <!-- image Container -->
     <img [src]="imgURL" height="200" width="200" /><br>
-    <ion-button (click)="getCamera()">From Camera</ion-button>
-    <ion-button (click)="getGallery()">From Gallery</ion-button>
+    <!-- <ion-button (click)="getCamera()">From Camera</ion-button>
+    <ion-button (click)="getGallery()">From Gallery</ion-button> -->
 
     <ion-button type="submit" shape="full" color="success" expand="block">Submit</ion-button>
+  </form>
+
+
+  <form [formGroup]="productForm" (ngSubmit)="updateProduct(prodRef.$key)" *ngIf="prodRef !== 0">    
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Nama</ion-label>
+      <ion-input formControlName="name" type="text" clearInput="true" autocomplete="off" autofocus="true" inputmode="text" min="4"></ion-input>
+    </ion-item>
+    
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="stacked"><ion-icon name="key-outline"></ion-icon>&nbsp;Brand</ion-label>
+      <ion-input formControlName="brand" type="text" clearInput="true" autocomplete="off" min="4"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Price</ion-label>
+      <ion-input formControlName="price" type="number" clearInput="true" autocomplete="off" inputmode="number" min="4"></ion-input>
+    </ion-item>
+    
+    
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Stock</ion-label>
+      <ion-input formControlName="stock" type="number" clearInput="true" autocomplete="off" inputmode="number" ></ion-input>
+    </ion-item>
+    
+    <ion-item class="ion-margin-horizontal">    
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Description</ion-label>
+      <ion-textarea formControlName="desc" clearInput="true" warp="soft"></ion-textarea>
+    </ion-item>
+
+    <ion-item class="ion-margin-horizontal">
+      <ion-label position="stacked"><ion-icon name="person-outline"></ion-icon>&nbsp;Image</ion-label>
+      <ion-input type="file" (change)="uploadFile($event.target.files)" inputmode="file" accept="image/*;capture=camera"></ion-input>
+      <ion-input formControlName="imgURL" type="hidden" inputmode="text" [value]="imgURL"></ion-input>
+    </ion-item>
+
+    <!-- image Container -->
+    <img [src]="imgURL"/><br>
+    <!-- <ion-button (click)="getCamera()">From Camera</ion-button>
+    <ion-button (click)="getGallery()">From Gallery</ion-button> -->
+
+    <ion-button type="submit" shape="full" class="ion-margin-horizontal" color="success" expand="block">Update</ion-button>
   </form>
 </ion-content>

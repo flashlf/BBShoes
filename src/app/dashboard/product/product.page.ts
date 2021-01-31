@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product as prod } from 'src/app/shared/Product';
+import { Router } from '@angular/router';
+import { Product as prod, Product } from 'src/app/shared/Product';
 import { ProductService } from 'src/app/shared/product.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ProductPage implements OnInit {
   Products = [];
 
   constructor(
+    private router : Router,
     private prodSvc : ProductService
   ) {
     this.hidden = true;
@@ -46,5 +48,12 @@ export class ProductPage implements OnInit {
     console.log(id)
     if (window.confirm('Yakin ingin menghapus produk ini?'))
       this.prodSvc.deleteProduct(id);
+  }
+  editProducts(id, prodRef: Product) {
+    console.log(id)
+    console.log(prodRef);
+    this.prodSvc.setNavData(prodRef);
+    this.router.navigate(['/dashboard/product/action-product/']);
+    
   }
 }

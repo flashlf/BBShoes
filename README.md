@@ -6,9 +6,9 @@ Personal Project buat Skripsinya
 Firman Felani
 
 ## Todo
-1. Desain Halaman [LoginProcess v, Dashboard x, Cart x]
+1. Desain Halaman [LoginProcess ``v``, Dashboard ``x``, Cart ``x``]
 1. Pembuatan Report
-1. Integrasi Firebase
+1. Integrasi Firebase ``DONE``
 1. Setting Min Android SDK untuk Deploy
 
 ## Referensi

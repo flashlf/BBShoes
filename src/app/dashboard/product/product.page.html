@@ -25,7 +25,7 @@
 
 
     <ion-list>
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>
           <h2>Product Name</h2>
           <p>Price: 123456</p>
@@ -47,7 +47,7 @@
           <ion-select-option value="saturn">Sega Saturn</ion-select-option>
           <ion-select-option value="snes">SNES</ion-select-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
       <ion-item-sliding *ngFor="let product of Products">
         <ion-item>
           <ion-label>
@@ -56,7 +56,6 @@
               {{product.name}}<br>
               <ion-icon name="pricetags-outline"></ion-icon> {{product.price | number}}
             </h5>
-            
           </ion-label>
           
           <ion-thumbnail slot="start">
@@ -66,7 +65,7 @@
         </ion-item>
 
         <ion-item-options side="start">
-          <ion-item-option color="primary">Edit</ion-item-option>
+          <ion-item-option color="primary" (click)="editProducts(product.$key,product)">Edit</ion-item-option>
         </ion-item-options>
 
         <ion-item-options side="end">

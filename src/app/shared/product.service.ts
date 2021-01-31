@@ -9,6 +9,7 @@ export class ProductService {
   productListRef: AngularFireList<any>;
   productRef: AngularFireObject<any>;
 
+  navData : any;
   constructor(private db: AngularFireDatabase) { }
 
   //Create
@@ -38,7 +39,7 @@ export class ProductService {
 
   //Update
   updateProduct(id, prod: Product) {
-    return this.productListRef.push({
+    return this.productListRef.update(id,{
       name: prod.name,
       brand: prod.brand,
       price: prod.price,
@@ -51,5 +52,15 @@ export class ProductService {
   deleteProduct(id: string) {
     this.productRef = this.db.object('/product/'+id);
     this.productRef.remove();
+  }
+
+  setNavData(navObj) {
+    this.navData = navObj
+  }
+
+  getNavData() {
+    if(this.navData === undefined || this.navData === null)
+      return 0
+    return this.navData;
   }
 }

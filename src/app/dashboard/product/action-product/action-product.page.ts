@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
@@ -28,6 +28,7 @@ export class ActionProductPage implements OnInit {
   images: Observable<imgData[]>
   fileName: string;
   fileSize: number;
+  prodRef: any;
   private imageCollection: AngularFirestoreCollection<imgData>;
   constructor(
     private router: Router,
@@ -35,21 +36,36 @@ export class ActionProductPage implements OnInit {
     private storage: AngularFireStorage,
     private database: AngularFirestore,
     private prodSvc: ProductService,
-    private camera: Camera
+    private camera: Camera,
+    private actRouter: ActivatedRoute
   ) {
+    this.prodRef = this.prodSvc.getNavData();
+    this.imgURL = this.prodRef.imgURL;
+    console.log("Data Nav -> ",this.prodRef);
     this.imageCollection = database.collection<imgData>('product');
     this.images = this.imageCollection.valueChanges();
    }
 
   ngOnInit() {
-    this.productForm = this.fBuild.group({
-      name : [''],
-      brand : [''],
-      price : [''],
-      stock: [''],
-      desc : [''],
-      imgURL: ['']
-    })
+    if(this.prodRef == 0) {
+      this.productForm = this.fBuild.group({
+        name : [''],
+        brand : [''],
+        price : [''],
+        stock: [''],
+        desc : [''],
+        imgURL: ['']
+      })
+    } else {
+      this.productForm = this.fBuild.group({
+        name : [this.prodRef.name],
+        brand : [this.prodRef.brand],
+        price : [this.prodRef.price],
+        stock: [this.prodRef.stock],
+        desc : [this.prodRef.desc],
+        imgURL: [this.prodRef.imgURL]
+      })
+    }
   }
 
   addProduct() {
@@ -63,6 +79,12 @@ export class ActionProductPage implements OnInit {
         this.router.navigate(['/dashboard/product/']);
       }).catch(error => console.log(error))
     }
+  }
+  updateProduct(id) {
+    this.prodSvc.updateProduct(id, this.productForm.value)
+      .then(() => {
+        this.router.navigate(['/dashboard/product']);
+      }).catch(err => console.log(err));
   }
 
   getCamera() {
@@ -131,4 +153,8 @@ export class ActionProductPage implements OnInit {
     console.log("URL : "+this.imgURL);
   }
 
+  resetParam() {
+    this.prodSvc.setNavData(0);
+    this.prodRef = 0;
+  }
 }

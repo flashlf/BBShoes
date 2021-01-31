@@ -22,6 +22,7 @@ import { DetailProductPageModule } from './detail-product/detail-product.module'
   import { RegisterPageModule } from "./register/register.module";
   // Camera
   import { Camera } from '@ionic-native/camera/ngx';
+import { ProductService } from './shared/product.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -40,6 +41,7 @@ import { DetailProductPageModule } from './detail-product/detail-product.module'
   providers: [
     StatusBar,
     Camera,
+    ProductService,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
