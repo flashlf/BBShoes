@@ -17,18 +17,18 @@
   <ion-list>
     <ion-item>	
       <ion-label position="stacked">Nama</ion-label>	
-      <ion-input></ion-input>	
+      <ion-input [(ngModel)]="name"></ion-input>	
     </ion-item>	
     <ion-item>	
-      <ion-label position="stacked">Email</ion-label>	
-      <ion-input type="email"></ion-input>	
+      <ion-label position="stacked">Kartu Kredit</ion-label>	
+      <ion-input type="number" [(ngModel)]="email"></ion-input>	
     </ion-item>	
     <ion-item>	
       <ion-label position="stacked">No. Ponsel</ion-label>	
-      <ion-input type="number"></ion-input>	
+      <ion-input type="number" [(ngModel)]="phone"></ion-input>	
     </ion-item>	
     <ion-item>	
-      <ion-label position="stacked">Alamat</ion-label>	
+      <ion-label position="stacked" [(ngModel)]="address">Alamat</ion-label>	
       <ion-textarea></ion-textarea>	
     </ion-item>	
   </ion-list>

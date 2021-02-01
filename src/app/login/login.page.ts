@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { RegisterPage } from '../register/register.page';
 import { ServiceService } from '../services/service.service';
+import { Userdb } from '../shared/Userdb';
+import { UserdbService } from '../shared/userdb.service';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +13,15 @@ import { ServiceService } from '../services/service.service';
 })
 export class LoginPage implements OnInit {
   text = "Default starting text"; // Contoh Penulisan Variable
-
+  user : any;
   constructor(
     private modalCtrl: ModalController,
     private routerOutlet: IonRouterOutlet,
     private router: Router,
-    private authSvc: ServiceService
-  ) { }
+    private authSvc: ServiceService,
+  ) {  }
 
-  ngOnInit() {
+  ngOnInit() {    
   }
   
   onChangeText() {
@@ -35,6 +37,7 @@ export class LoginPage implements OnInit {
       if(user) {
         // TODO : Check Email
         const isVerified = this.authSvc.isEmailVerified(user);
+        
         this.redirectUser(isVerified);
         console.log('Verified -> ', isVerified)
       }
@@ -49,6 +52,7 @@ export class LoginPage implements OnInit {
       if (user) {
         // TODO : Check Email
         const isVerified = this.authSvc.isEmailVerified(user);
+
         this.redirectUser(isVerified);
         console.log("Verified ->", isVerified)
       }

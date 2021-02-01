@@ -4,7 +4,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/firestore";
 import { Observable, of } from 'rxjs';
-import { switchMap } from "rxjs/operators";
+import { first, switchMap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import { switchMap } from "rxjs/operators";
 export class ServiceService {
   public user$: Observable<User>;
 
+  public currentUserID: string;
   constructor(
     private angAuth:AngularFireAuth,
     private angStore:AngularFirestore
@@ -29,6 +30,7 @@ export class ServiceService {
   isEmailVerified(user: User): boolean{
     return user.emailVerified === true ? true: false;
   }
+
   async sendVerificationEmail(): Promise<void> {
     try {
       return (await this.angAuth.currentUser).sendEmailVerification();
@@ -85,7 +87,7 @@ export class ServiceService {
 
   private updateUserData(user:User) {
     const userRef : AngularFirestoreDocument<User> = this.angStore.doc(`users/${user.uid}`);
-    const data:User = {
+    const data: User = {
       uid : user.uid,
       email: user.email,
       emailVerified: user.emailVerified,
