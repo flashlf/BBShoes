@@ -47,7 +47,7 @@ export class ProfilePage implements OnInit {
         photoURL: "",
         role: 1
       }
-      this.usrSvc.createUser(this.userData).then(res => {
+      this.usrSvc.createUserPreID(this.userData, this.uid).then(res => {
         console.log("BERHASIL CUK");
         console.log(res);
       }).catch(err => console.log(err))

@@ -25,6 +25,18 @@ export class UserdbService {
     })
   }
 
+  createUserPreID(user: Userdb, id) {
+    //this.userListRef = this.db.list('/users');
+    let temp = {
+      uid: user.$uid,
+      phone: user.phone,
+      address: user.address,
+      cc: user.cc,
+      photoURL: user.photoURL,
+      role: 1
+    }
+    return this.db.list('/users/').set(id, temp);
+  }
   //Get Single
   getUser(id: string) {
     this.userRef = this.db.object('/users/'+id);
