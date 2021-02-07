@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { snapshotChanges } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { MenuController, ModalController, IonRouterOutlet, NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { of } from 'rxjs';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { ServiceService } from '../services/service.service';
-import { Product } from '../shared/Product';
 import { UserdbService } from '../shared/userdb.service';
 
 @Component({
@@ -27,56 +27,60 @@ export class ProfilePage implements OnInit {
     private authGuard: AuthGuard,
     private routerOutlet: IonRouterOutlet,
     private router: Router,
-    private navControl: NavController,
+    private storage: Storage,
     private usrSvc: UserdbService) { }
 
   ngOnInit() {
-    this.redirect();
-    console.log(this.authSvc.user$)
-    if(this.userData == undefined && this.userData == null) {
-      this.authSvc.user$.subscribe(res => {
-        this.uid = res.uid;
-        let userRes = this.usrSvc.getUser(this.uid);
-        userRes.valueChanges().subscribe(p => {
-          if(p === null || p === undefined) {
-            this.userData = {
-              $uid : this.uid,
-              name : res.displayName,
-              phone: 0,
-              address: "",
-              cc: 0,
-              photoURL: "",
-              role: 1
-            }
-            this.usrSvc.createUserPreID(this.userData, this.uid).then(res => {
-              console.log("Uid ini baru saja didaftarkan");
-              console.log(res);
-            }).catch(err => console.log(err))
-          } else {
-            this.userData = {
-              uid : p.uid,
-              name : p.name,
-              phone: p.phone,
-              address: p.address,
-              cc: p.cc,
-              photoURL: p.photoURL,
-              role: p.role,
-            }
-            this.email = res.email;
-            if(this.userData['role'] == 2)        
-              this.admin = true;
-            console.log("user ini sudah ada ->",this.userData);
-            this.usrSvc.setCurrentUser(this.userData);
-          }
-        })    
-      })
-    }
+    //this.redirect();        
   }
+  
   ionViewDidEnter() {
     console.log("im called");
+    this.getDataStorage().then(() =>{
+      console.log("UID->",this.uid);
+      if(this.uid !== null) {
+        //this.authSvc.user$.subscribe(res => {
+          this.usrSvc.getUserList();        
+          let userRes = this.usrSvc.getUser(this.uid);
+          userRes.valueChanges().subscribe(p => {
+            if(p === null || p === undefined) {
+              this.userData = {
+                uid : this.uid,
+                name : "",
+                phone: 0,
+                address: "",
+                cc: 0,
+                photoURL: "",
+                role: 1
+              }
+              this.usrSvc.createUserPreID(this.userData, this.uid).then(res => {
+                console.log("Uid ini baru saja didaftarkan");
+                console.log(res);
+              }).catch(err => console.log(err))
+              this.usrSvc.setCurrentUser(this.userData);
+            } else {
+              this.userData = {
+                uid : p.uid,
+                name : p.name,
+                phone: p.phone,
+                address: p.address,
+                cc: p.cc,
+                photoURL: p.photoURL,
+                role: p.role
+              };          
+              (this.userData['role'] == 2) ? this.admin = true : this.admin = false;
+              console.log("user ini sudah ada ->",this.userData);
+              this.usrSvc.setCurrentUser(this.userData);
+            }
+          })    
+        //}).closed    
+      }
+
+    });
+
   }
   ngOnDestroy() {
-    this.routerOutlet.deactivate();
+    //this.userData = null;
   }
   emailDetail(){
     console.log(this.uid);
@@ -115,7 +119,6 @@ export class ProfilePage implements OnInit {
 
   async editProfile() {
     console.log("Edit Profile Clicked");
-    this.usrSvc.setCurrentUser(this.userData);
     const modal = await this.modalCtrl.create({
       component : EditProfileComponent,
       cssClass : 'my-custom-class',
@@ -127,16 +130,31 @@ export class ProfilePage implements OnInit {
     return await modal.present();
   }
 
-  logout() {    
+  logout() {
+    this.router.navigate(['/login']);
+    this.router.dispose();
     this.authSvc.logout();
     this.usrSvc.setCurrentUser(null);
-    this.router.navigate['/home'];
+    this.userData = null;
+  }
+  async getDataStorage(): Promise<void> {
+    this.uid = await this.storage.get('uid').then(val => {return val});
+    this.email = await this.storage.get("email").then(val => {return val});
   }
 
-  redirect() {
-    if(this.authSvc.user$ === null){
-      this.routerOutlet.pop();
-      this.router.navigate(['/login']);
-    }
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.getDataStorage().complete();
+    }, 2000);
   }
+
+  // redirect() {
+  //   if(this.usrSvc.getCurrentUser() === null || this.usrSvc.getCurrentUser() === undefined){
+  //     this.routerOutlet.pop();
+  //     this.router.navigate(['/login']);
+  //   }
+  // }
 }

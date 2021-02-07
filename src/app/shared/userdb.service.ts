@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { Storage } from '@ionic/storage';
 import { Userdb } from './Userdb';
 
 @Injectable({
@@ -9,8 +10,9 @@ export class UserdbService {
   userListRef: AngularFireList<any>;
   userRef: AngularFireObject<Userdb>;
 
-  currentUser: any;
-  constructor(private db: AngularFireDatabase) { }
+  public currentUser: any = null;
+  constructor(private db: AngularFireDatabase,
+    public storage: Storage) { }
 
   //Create User
   createUser(user: Userdb) {
@@ -67,9 +69,12 @@ export class UserdbService {
   }
 
   setCurrentUser(obj) {
-    this.currentUser = obj;
+    this.currentUser = obj;  
   }
-
+  setLogout() {
+    this.currentUser == null;
+    this.storage.clear();
+  }
   getCurrentUser() {
     if(this.currentUser === undefined || this.currentUser === null)
       return 0

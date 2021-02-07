@@ -3,30 +3,18 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { ServiceService } from '../services/service.service';
+import { UserdbService } from '../shared/userdb.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   currentUser;
-  constructor(private authSvc: ServiceService, private router: Router) {}
+  constructor(private authSvc: ServiceService, private router: Router, private usrSvc: UserdbService) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authSvc.user$.pipe(
-      take(1),
-      map(user => {
-        console.log('User-> ', user);
-        if(user) {
-          this.currentUser = user;
-          return true;
-        } else {
-          // redirect to Login Page
-          this.router.navigate(['/login']);
-          return false;
-        }
-      })
-    )
+    return this.usrSvc.getUser(this.authSvc.currentUserID) ? true : false;
   }
   
 }

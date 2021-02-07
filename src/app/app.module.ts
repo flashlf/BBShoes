@@ -23,12 +23,18 @@ import { DetailProductPageModule } from './detail-product/detail-product.module'
   // Camera
   import { Camera } from '@ionic-native/camera/ngx';
 import { ProductService } from './shared/product.service';
+import { UserdbService } from './shared/userdb.service';
+import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__bbShoes',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -43,6 +49,7 @@ import { ProductService } from './shared/product.service';
     Camera,
     ProductService,
     SplashScreen,
+    UserdbService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
