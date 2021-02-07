@@ -33,7 +33,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     //this.redirect();        
   }
-  
+
   ionViewDidEnter() {
     console.log("im called");
     this.getDataStorage().then(() =>{
@@ -144,11 +144,11 @@ export class ProfilePage implements OnInit {
 
   doRefresh(event) {
     console.log('Begin async operation');
+      this.getDataStorage().then(() => {
+        console.log('Async operation has ended');
+        event.target.complete();
+      });
 
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.getDataStorage().complete();
-    }, 2000);
   }
 
   // redirect() {
