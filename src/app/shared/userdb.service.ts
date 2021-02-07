@@ -16,7 +16,7 @@ export class UserdbService {
   createUser(user: Userdb) {
     //this.userListRef = this.db.list('/users');
     return this.userListRef.push({
-      uid: user.$uid,
+      uid: user.uid,
       phone: user.phone,
       address: user.address,
       cc: user.cc,
@@ -28,7 +28,8 @@ export class UserdbService {
   createUserPreID(user: Userdb, id) {
     //this.userListRef = this.db.list('/users');
     let temp = {
-      uid: user.$uid,
+      uid: user.uid,
+      name: user.name,
       phone: user.phone,
       address: user.address,
       cc: user.cc,
@@ -50,7 +51,8 @@ export class UserdbService {
 
   updateUser(id, user: Userdb, roleset = 1) {
     return this.userListRef.update(id, {
-      uid: user.$uid,
+      uid: user.uid,
+      name: user.name,
       phone: user.phone,
       address: user.address,
       cc: user.cc,

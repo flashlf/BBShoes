@@ -1,6 +1,7 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ModalController, NavController, NavParams } from '@ionic/angular';
+import { UserdbService } from '../shared/userdb.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -8,16 +9,18 @@ import { ModalController, NavParams } from '@ionic/angular';
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent implements OnInit {
-  private name : string; 
-  private email : string;
-  private address : string;
-  private phone : number;
+  profRef;
   constructor(
+    private router: Router,
+    public usrSvc: UserdbService,
     private navParams: NavParams,
+    public navControl: NavController,
     private modalCtrl: ModalController
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.usrSvc.getUserList();
+  }
 
   disEditProfile() {
     this.modalCtrl.dismiss({
@@ -25,10 +28,20 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
+  updateProfile( name, cc, phone, address) {
+    this.profRef['name'] = name.value;
+    this.profRef['cc'] = cc.value;
+    this.profRef['phone'] = phone.value;
+    this.profRef['address'] = address.value;
+    console.log(this.profRef);
+    console.log("Success Input Data [Edit Profile]");
+    this.usrSvc.updateUser(this.profRef['uid'], this.profRef, 1)
+      .then(() => {
+        this.router.navigate(['/profile']);
+      }).catch(err => console.log(err));
+  }
+
   refreshInput() {
-    this.name = "";
-    this.phone = null;
-    this.email = "";
-    this.address = "";
+
   }
 }

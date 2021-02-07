@@ -1,5 +1,6 @@
 export class Userdb{
-    $uid : string;
+    uid : string;
+    name : string;
     phone: number;
     address: string;
     cc: number;

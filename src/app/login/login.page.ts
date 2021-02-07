@@ -19,11 +19,17 @@ export class LoginPage implements OnInit {
     private routerOutlet: IonRouterOutlet,
     private router: Router,
     private authSvc: ServiceService,
+    private usrSvc: UserdbService,
   ) {  }
 
-  ngOnInit() {    
+  ngOnInit() { 
+    if(this.usrSvc.getCurrentUser() != null) {
+      this.router.navigate(['/profile']);
+    }  
   }
-  
+  ionViewWillEnter() {
+    
+  }
   onChangeText() {
     if(this.text == "Changed") {
       this.text = "Its Already Changed FUCKER!";
@@ -64,7 +70,7 @@ export class LoginPage implements OnInit {
   redirectUser(isVerified: boolean) { //nanti param ganti jadi user buat cek rolenya.
     // Redirect -> admin kek mana kek
     if(true){
-      this.router.navigate(['profile']);
+      this.router.navigate(['/profile']);
     } else {
       //manakek
     }
