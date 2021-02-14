@@ -8,5 +8,17 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <h1>YO BITCHES!!!</h1>
+  <ion-card mode="md">
+    <img class="produk-thumbnail" src="{{selectedProduct.imgURL}}"/>
+    <ion-card-header>
+      <div class="ion-text-capitalize">
+        <ion-card-title>{{selectedProduct.name}} | {{selectedProduct.brand}}</ion-card-title>
+      </div>
+      <ion-card-subtitle>{{selectedProduct.price|currency:"IDR"}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{selectedProduct.desc}}</p>
+      <ion-button class="ion-float-right" slot="end" (click)="addToCart()">Cart |<ion-icon slot="end" name="add-circle" ></ion-icon></ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

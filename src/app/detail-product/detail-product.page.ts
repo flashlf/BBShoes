@@ -7,18 +7,23 @@ import { NavParams, ModalController } from '@ionic/angular';
   styleUrls: ['./detail-product.page.scss'],
 })
 export class DetailProductPage implements OnInit {
-
+  selectedProduct;
   constructor(
     public navParams: NavParams,
     public modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
+    console.log("Data ->",this.selectedProduct)
   }
 
   public closeModal(){
     this.modalCtrl.dismiss({
       'dismissed':true
     });
+  }
+
+  addToCart() {
+    console.log("item -> "+this.selectedProduct.$key+" masuk keranjang");
   }
 }

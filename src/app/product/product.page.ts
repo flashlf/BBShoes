@@ -71,8 +71,9 @@ export class ProductPage implements OnInit {
       })
     })
   }
-  AddCart(){
-    console.log("Tambah ke keranjang");
+  AddCart(selectedProduct){
+    if (window.confirm("Tambahkan item "+selectedProduct.name+" ke keranjang?"))
+      console.log("Tambah ke keranjang id : ",selectedProduct.$key);
   }
   public showSearch(): void{
     console.log("Search dipencet")
@@ -92,13 +93,14 @@ export class ProductPage implements OnInit {
     }
   }
 
-  async OpenModal(){
+  async OpenModal(product){
     const modal = await this.modalCtrl.create({
       component : DetailProductPage,
       cssClass : 'my-custom-class',
       animated : true,
       swipeToClose: true,
-      presentingElement: this.routerOutlet.nativeEl
+      presentingElement: this.routerOutlet.nativeEl,
+      componentProps: {selectedProduct: product}
     });
     return await modal.present();
   }
