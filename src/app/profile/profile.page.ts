@@ -15,7 +15,15 @@ import { UserdbService } from '../shared/userdb.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  userData : any;
+  userData : any = {
+    uid : "",
+    name : "",
+    phone: 0,
+    address: "",
+    cc: 0,
+    photoURL: "",
+    role: 1
+  };
   admin : boolean = false;
   email : string;
   snapshot : any;
@@ -34,7 +42,7 @@ export class ProfilePage implements OnInit {
     //this.redirect();        
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     console.log("im called");
     this.getDataStorage().then(() =>{
       console.log("UID->",this.uid);
