@@ -51,22 +51,22 @@ export class ProfilePage implements OnInit {
           this.usrSvc.getUserList();        
           let userRes = this.usrSvc.getUser(this.uid);
           userRes.valueChanges().subscribe(p => {
-            if(p === null || p === undefined) {
-              this.userData = {
-                uid : this.uid,
-                name : "",
-                phone: 0,
-                address: "",
-                cc: 0,
-                photoURL: "",
-                role: 1
-              }
-              this.usrSvc.createUserPreID(this.userData, this.uid).then(res => {
-                console.log("Uid ini baru saja didaftarkan");
-                console.log(res);
-              }).catch(err => console.log(err))
-              this.usrSvc.setCurrentUser(this.userData);
-            } else {
+            // if(p === null || p === undefined) {
+            //   this.userData = {
+            //     uid : this.uid,
+            //     name : "",
+            //     phone: 0,
+            //     address: "",
+            //     cc: 0,
+            //     photoURL: "https://www.flaticon.com/svg/static/icons/svg/3947/3947031.svg",
+            //     role: 1
+            //   }
+            //   this.usrSvc.createUserPreID(this.userData, this.uid).then(res => {
+            //     console.log("Uid ini baru saja didaftarkan");
+            //     console.log(res);
+            //   }).catch(err => console.log(err))
+            //   this.usrSvc.setCurrentUser(this.userData);
+            // } else {
               this.userData = {
                 uid : p.uid,
                 name : p.name,
@@ -79,7 +79,7 @@ export class ProfilePage implements OnInit {
               (this.userData['role'] == 2) ? this.admin = true : this.admin = false;
               console.log("user ini sudah ada ->",this.userData);
               this.usrSvc.setCurrentUser(this.userData);
-            }
+            // }
           })    
         //}).closed    
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ServiceService } from '../services/service.service';
+import { UserdbService } from '../shared/userdb.service';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ export class RegisterPage implements OnInit {
   constructor(
     private modalCtrl:ModalController,
     private authSvc: ServiceService,
+    private usrSvc: UserdbService,
     private router: Router
   ) { }
 
@@ -23,11 +25,26 @@ export class RegisterPage implements OnInit {
     try {
       const user = await this.authSvc.register(email.value, password.value);
       if(user) {
-        console.log('User ->', user);
+        console.log('User ->', user);        
         const isVerified = this.authSvc.isEmailVerified(user);
-        this.redirectUser(isVerified);
+        // Buat user object di DB
+        let tempUser = {
+          uid : user.uid,
+          name : user.displayName,
+          phone: 0,
+          address: "",
+          cc: 0,
+          photoURL: "https://www.flaticon.com/svg/static/icons/svg/3947/3947031.svg",
+          role: 1
+        }
+        this.usrSvc.createUserPreID(tempUser, user.uid).then(
+          res => {
+            console.log("UID "+user.uid+", berhasil dibuat");
+            console.log(res)
+          }
+        ).catch(err => console.log(err));
         // CheckEmail
-
+        this.redirectUser(isVerified);
       }
     } catch (error) {
       console.log('Error', error)
