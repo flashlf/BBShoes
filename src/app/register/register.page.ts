@@ -26,11 +26,10 @@ export class RegisterPage implements OnInit {
       const user = await this.authSvc.register(email.value, password.value);
       if(user) {
         console.log('User ->', user);        
-        const isVerified = this.authSvc.isEmailVerified(user);
         // Buat user object di DB
         let tempUser = {
           uid : user.uid,
-          name : user.displayName,
+          name : (user.displayName === null) ? user.displayName : "",
           phone: 0,
           address: "",
           cc: 0,
@@ -39,12 +38,13 @@ export class RegisterPage implements OnInit {
         }
         this.usrSvc.createUserPreID(tempUser, user.uid).then(
           res => {
+            const isVerified = this.authSvc.isEmailVerified(user);
             console.log("UID "+user.uid+", berhasil dibuat");
             console.log(res)
+            this.redirectUser(isVerified);
           }
         ).catch(err => console.log(err));
         // CheckEmail
-        this.redirectUser(isVerified);
       }
     } catch (error) {
       console.log('Error', error)
