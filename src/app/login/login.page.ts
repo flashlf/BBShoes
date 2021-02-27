@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
   redirectUser(isVerified: boolean) { //nanti param ganti jadi user buat cek rolenya.
     // Redirect -> admin kek mana kek
     if(true){
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('home');
     } else {
       //manakek
     }

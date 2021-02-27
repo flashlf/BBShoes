@@ -61,20 +61,17 @@
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button >
-      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+      <ion-icon md="caret-up" ios="chevron-up-circle"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
-      <ion-fab-button color="light">
-        <ion-icon name="logo-facebook"></ion-icon>
+      <ion-fab-button color="light" (click)="openCart()">
+        <ion-icon name="cart"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
-        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon name="receipt"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="light">
-        <ion-icon name="logo-vimeo"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="light">
-        <ion-icon name="logo-google"></ion-icon>
+        <ion-icon name="caret-up"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>

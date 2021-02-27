@@ -39,7 +39,10 @@ export class ProfilePage implements OnInit {
     private usrSvc: UserdbService) { }
 
   ngOnInit() {
-    //this.redirect();        
+    this.getDataStorage().then(() => {
+      if(this.uid == null || this.uid == undefined)
+      this.redirect();        
+    })
   }
 
   ionViewWillEnter() {
@@ -88,7 +91,7 @@ export class ProfilePage implements OnInit {
 
   }
   ngOnDestroy() {
-    //this.userData = null;
+    this.userData = null;
   }
   emailDetail(){
     console.log(this.uid);
@@ -159,10 +162,10 @@ export class ProfilePage implements OnInit {
 
   }
 
-  // redirect() {
-  //   if(this.usrSvc.getCurrentUser() === null || this.usrSvc.getCurrentUser() === undefined){
-  //     this.routerOutlet.pop();
-  //     this.router.navigate(['/login']);
-  //   }
-  // }
+  redirect() {
+    // if(this.usrSvc.getCurrentUser() === null || this.usrSvc.getCurrentUser() === undefined){
+      this.routerOutlet.pop();
+      this.router.navigate(['/login']);
+    // }
+  }
 }

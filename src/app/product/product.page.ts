@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { DetailProductPage } from '../detail-product/detail-product.page';
 import { Product } from '../shared/Product';
@@ -51,7 +52,8 @@ export class ProductPage implements OnInit {
   constructor(
     public modalCtrl : ModalController,
     private routerOutlet: IonRouterOutlet,
-    private prodSvc: ProductService) { 
+    private prodSvc: ProductService,
+    private router: Router) { 
     
   }
 
@@ -104,7 +106,9 @@ export class ProductPage implements OnInit {
     });
     return await modal.present();
   }
-  
+  openCart(){
+    this.router.navigate(['cart']);
+  }
   fetchProducts() {
     this.prodSvc.getProductList().valueChanges().subscribe(res=>{
       console.log(res);

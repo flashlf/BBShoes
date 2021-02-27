@@ -69,6 +69,7 @@ export class ServiceService {
     try {
       const { user } = await this.angAuth.createUserWithEmailAndPassword(email, password);
       await this.sendVerificationEmail();
+      this.updateUserData(user);
       return user;
     } catch (error) {
       console.log('Error->', error)

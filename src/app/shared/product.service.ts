@@ -30,7 +30,10 @@ export class ProductService {
     this.productRef = this.db.object('/product/'+id);
     return this.productRef;
   }
-
+  getProductData(id: string):any {
+    let temp = this.db.object('/product/'+id)
+    return temp
+  }
   //Get List
   getProductList() {
     this.productListRef = this.db.list('/product/');

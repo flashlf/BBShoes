@@ -1,5 +1,6 @@
 import { analyzeFileForInjectables } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController, ToastController } from '@ionic/angular';
 import { DetailProductPage } from '../detail-product/detail-product.page';
 
@@ -11,7 +12,8 @@ import { DetailProductPage } from '../detail-product/detail-product.page';
 export class HomePage {
 
   constructor(public modalCtrl: ModalController,
-    private routerOutlet: IonRouterOutlet) {}
+    private routerOutlet: IonRouterOutlet,
+    private router: Router) {}
 
   async showModal(){
     const modal = await this.modalCtrl.create({
@@ -23,5 +25,8 @@ export class HomePage {
     });
     console.log(modal);
     return await modal.present();
+  }
+  openProfile(){
+    this.router.navigateByUrl('/profile');
   }
 }

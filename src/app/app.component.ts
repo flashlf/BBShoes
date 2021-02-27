@@ -17,7 +17,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  path: boolean = true;
+  public path: boolean = false;
   closed$ = new Subject<any>();
   constructor(
     private platform: Platform,
@@ -35,14 +35,25 @@ export class AppComponent {
       filter(e => e instanceof NavigationEnd),
       takeUntil(this.closed$)
     ).subscribe(event => {
-      if (event['url'] == '/login' || event['url'] == '') {
+      if (event['url'] == 'login' || event['url'] == '') {
         this.path = false; // <-- hide tabs on specific pages
       } else {
         this.path = true;
       }
     });
   }
-
+  IonViewWillEnter() {
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      takeUntil(this.closed$)
+    ).subscribe(event => {
+      if (event['url'] == 'login' || event['url'] == '') {
+        this.path = false; // <-- hide tabs on specific pages
+      } else {
+        this.path = true;
+      }
+    });
+  }
   ngOnDestroy() {
     this.closed$.next();
   }
