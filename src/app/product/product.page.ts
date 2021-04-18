@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { DetailProductPage } from '../detail-product/detail-product.page';
+import { CartService } from '../shared/cart.service';
 import { Product } from '../shared/Product';
 import { ProductService } from '../shared/product.service';
 
@@ -46,18 +48,26 @@ export class ProductPage implements OnInit {
     }
   ];
   Products = [];
-
+  uid: string; 
+  email: string;
   hidden : boolean;
   iconName : String;
   constructor(
     public modalCtrl : ModalController,
     private routerOutlet: IonRouterOutlet,
     private prodSvc: ProductService,
-    private router: Router) { 
+    private router: Router,
+    private storage: Storage,
+    private cart: CartService) { 
     
   }
 
   ngOnInit() {
+    this.getDataStorage().then(() => {
+      if(this.uid == null || this.uid == undefined)
+      //this.redirect();        
+      console.log("Belom Login brur");
+    })
     this.hidden = true;
     this.iconName = "filter-circle-outline";
     // Ambil Product
@@ -76,6 +86,13 @@ export class ProductPage implements OnInit {
   AddCart(selectedProduct){
     if (window.confirm("Tambahkan item "+selectedProduct.name+" ke keranjang?"))
       console.log("Tambah ke keranjang id : ",selectedProduct.$key);
+    let convProduct = {
+        productKey: selectedProduct.$key,
+        qty: 1,
+        productImage: selectedProduct.imgURL,
+        status: 1 
+    }
+    this.cart.addToCart("cart-"+this.uid, convProduct);
   }
   public showSearch(): void{
     console.log("Search dipencet")
@@ -113,5 +130,10 @@ export class ProductPage implements OnInit {
     this.prodSvc.getProductList().valueChanges().subscribe(res=>{
       console.log(res);
     })
+  }
+
+  async getDataStorage(): Promise<void> {
+    this.uid = await this.storage.get('uid').then(val => {return val});
+    this.email = await this.storage.get("email").then(val => {return val});
   }
 }

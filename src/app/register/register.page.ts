@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ServiceService } from '../services/service.service';
+import { CartService } from '../shared/cart.service';
 import { UserdbService } from '../shared/userdb.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class RegisterPage implements OnInit {
     private authSvc: ServiceService,
     private usrSvc: UserdbService,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private cart: CartService
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class RegisterPage implements OnInit {
           }).catch(err => console.log(err));
           // CheckEmail
           const isVerified = this.authSvc.isEmailVerified(user);
+          this.cart.createCart(user.uid);
           this.redirectUser(isVerified);
           this.storage.set('email', user.email);
           this.storage.set('uid', user.uid);

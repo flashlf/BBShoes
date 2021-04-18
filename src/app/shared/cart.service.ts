@@ -15,17 +15,19 @@ export class CartService {
   constructor(
     private db: AngularFireDatabase,
     public storage: Storage
-  ) { }
+  ) { 
+    this.cartListRef = this.getCartList()
+  }
 
-  createCart(cart: Cart) {
+  createCart(userID: String) {
     let temp = {
-      userRef : cart.cartID, 
-      productList : cart.productList
+      cartID : "cart-"+userID, 
+      productList : [null]
     }
 
-    return this.db.list('/cart/').set(cart.cartID, temp);
+    return this.db.list('/cart/').set(temp.cartID, temp);
   }
-  getCart(id: String) {
+  getCart(id: string) {
     return this.cartRef = this.db.object('/cart/'+id);
   }
   getCartList() {
@@ -38,12 +40,24 @@ export class CartService {
     })
   }
   addToCart(id : string, product: any) {
-    let temp = this.getProductFromCart(id);
-    temp.push(product.key, product.qty, product.imgURL, 1);
-    return this.cartListRef.update(id, {
-      cartID: id,
-      productList: temp
-    })
+    this.cartRef = this.getCart(id);
+    let productListRef = this.getProductFromCart(id);
+    if(productListRef != undefined) {
+      productListRef.push(product.key, product.qty, product.imgURL, 1);
+      return this.cartListRef.update(id, {
+        cartID: id,
+        productList: productListRef
+      })
+    } else {
+      let temp = {
+        productKey: product.productKey,
+        qty: product.qty,
+        productImage: product.productImage,
+        status: 1 
+      }
+      console.log(temp)
+      return this.db.object('/cart/'+id+'/productList/'+temp.productKey).set(temp);
+    }
   }
 
   removeFromCart(id: string, product: any) {

@@ -85,6 +85,8 @@ export class ProfilePage implements OnInit {
             // }
           })    
         //}).closed    
+      } else {
+        this.redirect();
       }
 
     });

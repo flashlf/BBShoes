@@ -81,7 +81,7 @@ export class ServiceService {
       const { user } = await this.angAuth.signInWithEmailAndPassword(email, password);
       this.currentUserID = user.uid;
       this.currentUserEmail = user.email;
-      this.updateUserData(user);
+      //this.updateUserData(user);
       return user;
     } catch (error) {
       console.log('Error->',error)

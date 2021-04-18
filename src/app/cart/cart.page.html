@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>CART</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="product"
+        text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+      <!-- <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox> -->
+      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-label>Nama Product
+        <h5>
+          <ion-icon name="pricetags-outline"></ion-icon> Harga
+        </h5>
+      </ion-label>
+      
+      <!-- Gambar Product -->
+      <ion-thumbnail slot="start">
+        <img src="" />
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <!-- <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox> -->
+      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-label>Nama Product
+        <h5>
+          <ion-icon name="pricetags-outline"></ion-icon> Harga
+        </h5>
+      </ion-label>
+      
+      <!-- Gambar Product -->
+      <ion-thumbnail slot="start">
+        <img src="" />
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item (press)="changeQty()">
+      <!-- <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox> -->
+      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-label>Nama Product
+        <h5>
+          <ion-icon name="pricetags-outline"></ion-icon> Harga
+        </h5>
+      </ion-label>
+      
+      <!-- Gambar Product -->
+      <ion-thumbnail slot="start">
+        <img src="" />
+      </ion-thumbnail>
+      <ion-note slot="end"><ion-icon name="cube-outline"></ion-icon> 5</ion-note>    
+    </ion-item>
+
+</ion-content>
