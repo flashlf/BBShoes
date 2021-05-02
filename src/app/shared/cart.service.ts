@@ -8,8 +8,8 @@ import { Product } from './Product';
   providedIn: 'root'
 })
 export class CartService {
-  cartListRef: AngularFireList<any>;
-  cartRef: AngularFireObject<Cart>;
+  public cartListRef: AngularFireList<any>;
+  public cartRef: AngularFireObject<any>;
 
   public currentCart: any = null;
   constructor(
