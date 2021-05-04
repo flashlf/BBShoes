@@ -43,7 +43,7 @@ export class CartService {
     this.cartRef = this.getCart(id);
     let productListRef = this.getProductFromCart(id);
     if(productListRef != undefined) {
-      productListRef.push(product.key, product.qty, product.imgURL, 1);
+      productListRef.push(product);
       return this.cartListRef.update(id, {
         cartID: id,
         productList: productListRef
@@ -51,9 +51,11 @@ export class CartService {
     } else {
       let temp = {
         productKey: product.productKey,
-        qty: product.qty,
+        productName: product.productName,
         productImage: product.productImage,
-        status: 1 
+        productPrice: product.productPrice,
+        productQty: 1,
+        productStatus: 1  
       }
       console.log(temp)
       return this.db.object('/cart/'+id+'/productList/'+temp.productKey).set(temp);

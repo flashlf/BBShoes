@@ -57,7 +57,7 @@ export class CartPage implements OnInit {
     if(this.uid != null && this.uid != undefined) {
       let cartRes = this.cartSvc.getCart(`cart-${this.uid}`)
       cartRes.snapshotChanges().subscribe(res => {
-        let a = res.payload.toJSON();
+        let a = res.payload.toJSON();        
         console.log(a['productList']);
         this.currentCart = [];
         this.cartProduct = [];
@@ -65,10 +65,24 @@ export class CartPage implements OnInit {
         this.currentCart.push(a as Cart);
         console.log(this.currentCart);
         let items = Object.keys(a['productList'])
+        console.log("items => {{items}}")
+        console.log(`values => ${Object.values(a['productList'])}`)
         this.Products.forEach(element => {
+          let x = 0
           items.forEach(item => {
-            if (element.$key == item)
-              this.cartProduct.push(element as Product)
+            if (element.$key == item) {
+              //console.log(a['productList'][item]['productImage'])
+              let temp = {
+                productKey: a['productList'][item]['productKey'],
+                productName: a['productList'][item]['productName'],
+                productImage: a['productList'][item]['productImage'],
+                productPrice: a['productList'][item]['productPrice'],
+                productQty: a['productList'][item]['productQty'],
+                productStatus: a['productList'][item]['productStatus']
+              }
+              this.cartProduct.push(temp)
+              x++
+            }
           });
         });
         console.log('PRODUCT DI FILTER');
@@ -77,12 +91,18 @@ export class CartPage implements OnInit {
     }
   }
   ionViewDidEnter() {
-
+    if(this.cartProduct == null || this.cartProduct == undefined) {
+      console.log("Belum Ada product boy, silahkan beli dulu.")
+    }
   }
 
   changeQty(){
     if (window.confirm('Ubah Item'))
       console.log("hulahah");
+  }
+
+  deleteProduct(id : string) {
+    console.log(`produk ${id} dihapus dari cart`)
   }
 
   async getDataStorage(): Promise<void> {

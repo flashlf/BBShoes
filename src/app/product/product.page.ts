@@ -87,10 +87,12 @@ export class ProductPage implements OnInit {
     if (window.confirm("Tambahkan item "+selectedProduct.name+" ke keranjang?"))
       console.log("Tambah ke keranjang id : ",selectedProduct.$key);
     let convProduct = {
-        productKey: selectedProduct.$key,
-        qty: 1,
-        productImage: selectedProduct.imgURL,
-        status: 1 
+      productKey: selectedProduct.$key,
+      productName: selectedProduct.name,
+      productImage: selectedProduct.imgURL,
+      productPrice: selectedProduct.price,
+      productQty: 1,
+      productStatus: 1 
     }
     this.cart.addToCart("cart-"+this.uid, convProduct);
   }

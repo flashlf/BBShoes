@@ -2,9 +2,11 @@ export class Cart {
     cartID : string;
     productList : Array<{
         productKey: string,
-        qty: number,
+        productName: string,
         productImage: string,
-        status: number 
+        productPrice: number,
+        productQty: number,
+        productStatus: number 
     }>;
     /**
      * Status
