@@ -58,16 +58,15 @@ export class CartService {
         productStatus: 1  
       }
       console.log(temp)
+      // ini bisa di enhance untuk penambahan qty apabila product udah ada dalam cart
+      // tinggal dimasukin dulu db.objectnya set di bagian terakhir aja
       return this.db.object('/cart/'+id+'/productList/'+temp.productKey).set(temp);
     }
   }
 
   removeFromCart(id: string, product: any) {
-    let temp = this.getProductFromCart(id);
-    delete temp[product.key];
-    return this.cartListRef.update(id, {
-      cartID: id,
-      productList: temp
-    })
+    console.log('JSON yg dihapus => /cart/'+id+'/productList/'+product[0]['productKey'])
+    this.cartRef = this.db.object('/cart/'+id+'/productList/'+product[0]['productKey'])
+    this.cartRef.remove();
   }
 }

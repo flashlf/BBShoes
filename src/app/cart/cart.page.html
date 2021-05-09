@@ -25,24 +25,10 @@
     </ion-item>
 
     <ion-item-options side="end">
-      <ion-item-option color="danger" (click)="deleteProduct(product.$key)">Delete</ion-item-option>
+      <ion-item-option color="danger" (click)="deleteProduct(product.productKey)">Delete</ion-item-option>
     </ion-item-options>
   </ion-item-sliding>
-
-    <ion-item>
-      <!-- <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox> -->
-      <ion-checkbox slot="start"></ion-checkbox>
-      <ion-label>Nama Product
-        <h5>
-          <ion-icon name="pricetags-outline"></ion-icon> Harga
-        </h5>
-      </ion-label>
-      
-      <!-- Gambar Product -->
-      <ion-thumbnail slot="start">
-        <img src="" />
-      </ion-thumbnail>
-    </ion-item>
+  
 
     <ion-item (press)="changeQty()">
       <!-- <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox> -->
@@ -59,5 +45,5 @@
       </ion-thumbnail>
       <ion-note slot="end"><ion-icon name="cube-outline"></ion-icon> 5</ion-note>    
     </ion-item>
-
+    <ion-button expand="block">Checkout</ion-button>
 </ion-content>

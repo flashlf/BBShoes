@@ -63,7 +63,7 @@ export class CartPage implements OnInit {
         this.cartProduct = [];
         console.log("ION VIEW WILL ENTER")
         this.currentCart.push(a as Cart);
-        console.log(this.currentCart);
+        console.log("Isi Cart =>", this.currentCart);
         let items = Object.keys(a['productList'])
         console.log("items => {{items}}")
         console.log(`values => ${Object.values(a['productList'])}`)
@@ -102,7 +102,18 @@ export class CartPage implements OnInit {
   }
 
   deleteProduct(id : string) {
-    console.log(`produk ${id} dihapus dari cart`)
+    console.log('Product Key => ',id)
+    let x = 0
+    this.cartProduct.forEach(element => {
+       if (element.productKey == id ) {
+         let remove = this.cartProduct.splice(x,1)
+         console.log("Product yg sudah dihapus", remove)
+         console.log(`cart-${this.uid}`)
+         this.cartSvc.removeFromCart(`cart-${this.uid}`, remove)
+        }
+        x++
+      });
+      console.log("Cart yg baru", this.cartProduct)
   }
 
   async getDataStorage(): Promise<void> {
